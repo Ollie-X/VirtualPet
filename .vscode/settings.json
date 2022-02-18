@@ -1,0 +1,17 @@
+{
+	"[csharp]": {
+		"editor.formatOnSave": false,
+		"editor.tabSize": 4
+	},
+	"editor.tabSize": 2,
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.rulers": [
+		120
+	],
+	"files.exclude": {
+		"**/bin": true,
+		"**/obj": true
+	},
+	"editor.minimap.enabled": false
+}
