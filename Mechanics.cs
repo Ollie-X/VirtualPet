@@ -2,7 +2,6 @@ using static VirtualPet.Formatting;
 
 namespace VirtualPet
 {
-
 	public static class Mechanics
 	{
 		public static string GetSpeciesFromConsole()
@@ -24,34 +23,17 @@ namespace VirtualPet
 			return userInput!;
 		}
 
-		public static bool IsSpecies(string? value)
-		{
-			var isSpecies =
-				"dog".Equals(value, StringComparison.OrdinalIgnoreCase) ||
-				"cat".Equals(value, StringComparison.OrdinalIgnoreCase) ||
-				"fish".Equals(value, StringComparison.OrdinalIgnoreCase) ||
-				"turtle".Equals(value, StringComparison.OrdinalIgnoreCase) ||
-				"bunny".Equals(value, StringComparison.OrdinalIgnoreCase) ||
-				"lizard".Equals(value, StringComparison.OrdinalIgnoreCase) ||
-				"pig".Equals(value, StringComparison.OrdinalIgnoreCase) ||
-				"goat".Equals(value, StringComparison.OrdinalIgnoreCase);
+		private static string[] _allowedPetTypes = new[] { "dog", "cat", "fish", "turtle", "bunny", "lizard", "pig", "goat" };
 
-			return isSpecies;
-		}
+		public static bool IsSpecies(string? value) => _allowedPetTypes.Contains(value, StringComparer.OrdinalIgnoreCase);
 
 		public static void ListenForAction(string species, string? name)
 		{
 			WriteLineIndented($"When you see ACTION you can type what you want to do. Type INFO for your pets information\n\tFEED to feed your pet");
 			WriteIndented("ACTION: ");
 
-			var action = "unknown";
-
 			var userInput = Console.ReadLine();
-
-			if (userInput != null)
-			{
-				action = userInput.ToUpper();
-			}
+			var action = userInput != null ? userInput.ToUpper() : "unknown";
 
 			while (action != "QUIT")
 			{
@@ -69,11 +51,9 @@ namespace VirtualPet
 				}
 
 				WriteIndented("ACTION: ");
+
 				userInput = Console.ReadLine();
-				if (userInput != null)
-				{
-					action = userInput.ToUpper();
-				}
+				action = userInput != null ? userInput.ToUpper() : "unknown";
 			}
 		}
 
