@@ -7,7 +7,7 @@ namespace VirtualPet
 		public static string GetSpeciesFromConsole()
 		{
 			WriteLineIndented("What am I, a... ");
-			WriteLineIndented("Dog, Cat, Fish, Frog, Bunny, Lizard, or Pig");
+			WriteLineIndented("Dog, Cat, Fish, Turtle, Bunny, Lizard, Pig, Goat, or Hepe");
 			WriteLineIndented("Please type a SPECIES and press ENTER! (You can !NOT! change this untill your pet dies or you restart.)");
 			WriteIndented("SPECIES: ");
 
@@ -23,7 +23,7 @@ namespace VirtualPet
 			return userInput!;
 		}
 
-		private static string[] _allowedPetTypes = new[] { "dog", "cat", "fish", "turtle", "bunny", "lizard", "pig", "goat" };
+		private static string[] _allowedPetTypes = new[] { "dog", "cat", "fish", "turtle", "bunny", "lizard", "pig", "goat","Hepe" };
 
 		public static bool IsSpecies(string? value) => _allowedPetTypes.Contains(value, StringComparer.OrdinalIgnoreCase);
 
@@ -34,16 +34,20 @@ namespace VirtualPet
 
 			var userInput = Console.ReadLine();
 			var action = userInput != null ? userInput.ToUpper() : "unknown";
+			var animal = new Animal();
 
 			while (action != "QUIT")
 			{
 				switch (action)
 				{
 					case "INFO":
-						DogStats(species, name);
+						WriteIndented(animal.Stats(species, name));
 						break;
 					case "FEED":
-						Feed(name);
+						WriteIndented(animal.Feed(name));
+						break;
+					case "TRICK":
+						WriteIndented(animal.Trick(species, name));
 						break;
 					default:
 						WriteIndented($"{userInput} is not an ACTION\n");
@@ -55,26 +59,6 @@ namespace VirtualPet
 				userInput = Console.ReadLine();
 				action = userInput != null ? userInput.ToUpper() : "unknown";
 			}
-		}
-
-		public static void DogStats(string? species, string? name)
-		{
-			var isDog = "dog".Equals(species, StringComparison.OrdinalIgnoreCase);
-
-			if (isDog)
-			{
-				WriteLineIndented($"{name}");
-				WriteLineIndented($"{species}\tWeight: 72.5lbs\tSize: 23.5inch");
-			}
-			else
-			{
-				WriteLineIndented($"unknown INFO on {species}s");
-			}
-		}
-
-		public static void Feed(string? name)
-		{
-			WriteLineIndented($"{name} says YUM! YUM!");
 		}
 	}
 }
