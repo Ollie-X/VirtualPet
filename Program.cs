@@ -12,7 +12,7 @@ namespace VirtualPet
 
             WriteLineIndented("I need a NAME. Please type a NAME and press ENTER!");
             WriteIndented("NAME: ");
-            var petName = Console.ReadLine();
+            var petName = GetNameFromConsole();
 
             WriteLineIndented($"Thank you, I will now be a {petSpecies}, know as {petName}.\n");
 

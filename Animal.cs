@@ -1,20 +1,28 @@
+
 namespace VirtualPet
 {
 	public class Animal 
 	{
-		public string Trick(string species, string? name)
+		public string Name { get; set; }
+
+		public Animal(string name)
 		{
-			return $"{name} the {species} is doing a TRICK!\n";
+			Name = name;
 		}
 
-		public string Stats(string species, string? name)
+		public string Trick(string species)
 		{
-			return $"these are the stats of {name} the species\n";
+			return $"{Name} the {species} is doing a TRICK!\n";
 		}
 
-		public string Feed(string? name)
+		public string Stats(string species)
 		{
-			return $"{name} says YUM! YUM!\n";
+			return $"these are the stats of {Name} the species\n";
+		}
+
+		public string Feed()
+		{
+			return $"{Name} says YUM! YUM!\n";
 		}
 	}
 }

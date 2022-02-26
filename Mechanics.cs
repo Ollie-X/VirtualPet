@@ -23,31 +23,48 @@ namespace VirtualPet
 			return userInput!;
 		}
 
+		public static string GetNameFromConsole()
+		{
+            var petName = Console.ReadLine();
+
+			while (petName == null)
+			{
+				WriteLineIndented("A NAME is required! Please type a NAME and press ENTER!");
+            	WriteIndented("NAME: ");
+				petName = Console.ReadLine();
+
+			}
+			
+			return petName;
+		}
+
 		private static string[] _allowedPetTypes = new[] { "dog", "cat", "fish", "turtle", "bunny", "lizard", "pig", "goat","Hepe" };
 
 		public static bool IsSpecies(string? value) => _allowedPetTypes.Contains(value, StringComparer.OrdinalIgnoreCase);
 
-		public static void ListenForAction(string species, string? name)
+		public static void ListenForAction(string species, string name)
 		{
 			WriteLineIndented($"When you see ACTION you can type what you want to do. Type INFO for your pets information\n\tFEED to feed your pet");
 			WriteIndented("ACTION: ");
 
 			var userInput = Console.ReadLine();
 			var action = userInput != null ? userInput.ToUpper() : "unknown";
-			var animal = new Animal();
+			var animal = new Animal(name);
+
+			var showMeTheName = animal.Name;
 
 			while (action != "QUIT")
 			{
 				switch (action)
 				{
 					case "INFO":
-						WriteIndented(animal.Stats(species, name));
+						WriteIndented(animal.Stats(species));
 						break;
 					case "FEED":
-						WriteIndented(animal.Feed(name));
+						WriteIndented(animal.Feed());
 						break;
 					case "TRICK":
-						WriteIndented(animal.Trick(species, name));
+						WriteIndented(animal.Trick(species));
 						break;
 					default:
 						WriteIndented($"{userInput} is not an ACTION\n");
