@@ -1,13 +1,16 @@
+using System;
 
 namespace VirtualPet
 {
 	public class Animal 
 	{
 		public string Name { get; set; }
+		public DateTime DateOfBirth { get; set; }
 
 		public Animal(string name)
 		{
 			Name = name;
+			DateOfBirth = DateTime.Now;
 		}
 
 		public string Trick(string species)
@@ -17,7 +20,7 @@ namespace VirtualPet
 
 		public string Stats(string species)
 		{
-			return $"these are the stats of {Name} the species\n";
+			return $"{Name} the {species} was born on {DateOfBirth}\n";
 		}
 
 		public string Feed()

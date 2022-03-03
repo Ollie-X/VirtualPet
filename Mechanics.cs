@@ -27,18 +27,17 @@ namespace VirtualPet
 		{
             var petName = Console.ReadLine();
 
-			while (petName == null)
+			while (string.IsNullOrWhiteSpace(petName))
 			{
 				WriteLineIndented("A NAME is required! Please type a NAME and press ENTER!");
             	WriteIndented("NAME: ");
 				petName = Console.ReadLine();
-
 			}
 			
 			return petName;
 		}
 
-		private static string[] _allowedPetTypes = new[] { "dog", "cat", "fish", "turtle", "bunny", "lizard", "pig", "goat","Hepe" };
+		private static string[] _allowedPetTypes = new[] { "dog", "cat", "fish", "turtle", "bunny", "lizard", "pig", "goat", "Hepe" };
 
 		public static bool IsSpecies(string? value) => _allowedPetTypes.Contains(value, StringComparer.OrdinalIgnoreCase);
 
@@ -53,7 +52,7 @@ namespace VirtualPet
 
 			var showMeTheName = animal.Name;
 
-			while (action != "QUIT")
+			while (action != "QUIT" && action != "Q")
 			{
 				switch (action)
 				{
